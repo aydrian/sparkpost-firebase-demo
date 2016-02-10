@@ -5,7 +5,8 @@ const Main = ({children, history}) => {
     <div className="main-container">
       <nav className="navbar navbar-default" role="navigation">
         <div className="col-sm-12">
-          <h1>SparkPost w/ React & Firebase</h1>
+          <a className="navbar-brand" href="https://developers.sparkpost.com"><img src="/images/SparkPost_Logo.png" width="150" /></a>
+          <h3>React & Firebase Demo</h3>
         </div>
       </nav>
       <div className="container">

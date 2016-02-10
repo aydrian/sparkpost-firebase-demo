@@ -21,18 +21,20 @@ class Campaign extends React.Component {
   componentWillUnmount(){
     base.removeBinding(this.ref);
   }
-  init(listname){
-    this.ref = base.bindToState(listname, {
+  init(campaignName){
+    this.ref = base.bindToState(campaignName, {
       context: this,
       asArray: true,
       state: 'recipients'
     });
+    this.email = `${campaignName}@hey.aydrian.me`
   }
   render() {
     return (
       <div className="row">
         <div className="col-md-4">
           <h2>Recipients</h2>
+          <p>Email <a href={`mailto:${ this.email}`}>{this.email}</a> to subscribe</p>
           <ul className="list-group">
             {this.state.recipients.map((recipient, index) => (
               <li className="list-group-item" key={index}>{recipient.email} - {recipient.subject}</li>
