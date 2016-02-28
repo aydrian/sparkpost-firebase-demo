@@ -25,5 +25,8 @@
     "babel-preset-stage-3": "^6.5.0",
     "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1"
+  },
+  "babel": {
+    "presets": ["es2015", "react", "stage-3"]
   }
 }
