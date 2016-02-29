@@ -23,7 +23,7 @@ class SparkyFire {
 
   processRelayMessage(event) {
     const local = event.rcpt_to.split('@')[0]
-    this.db.child(local).push({
+    this.db.child(`recipients/${local}`).push({
       email: event.msg_from,
       friendly: event.friendly_from,
       subject: event.content.subject
