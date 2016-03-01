@@ -24,7 +24,16 @@ class Home extends React.Component {
   }
 
   handleAddCampaign(newCampaign){
-   this.context.router.push(`campaign/${newCampaign}`)
+    let router = this.context.router;
+    base.post(`campaigns/${newCampaign}`, {
+      data: {
+        name: newCampaign,
+          isActive: false
+      },
+      then(){
+        router.push(`campaign/${newCampaign}`)
+      }
+    })
   }
 
   render() {

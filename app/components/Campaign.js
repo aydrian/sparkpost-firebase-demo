@@ -14,11 +14,6 @@ class Campaign extends React.Component {
   }
   componentDidMount(){
     this.init(this.props.params.name)
-    this.setState({
-      campaign: {
-        name: this.props.params.name
-      }
-    })
   }
   componentWillReceiveProps(nextProps){
     base.removeBinding(this.campaignRef);
@@ -76,12 +71,23 @@ class Campaign extends React.Component {
 
   render() {
     console.log(this.state)
-    console.log("preview html", this.preview)
     let links = this.state.campaign.links || []
     return (
       <div className="row">
         <div className="row">
-          <h1>{this.state.campaign.name}</h1>
+          <div className="col-md-9">
+            <h1>{this.state.campaign.name}</h1>
+          </div>
+          <div className="col-md-3">
+            <div className="btn-group" data-toggle="buttons">
+              <label className="btn btn-primary active">
+                <input type="radio" name="active" id="active" autoComplete="off" defaultChecked={this.state.campaign.isActive} />Active
+              </label>
+              <label className="btn btn-primary">
+                <input type="radio" name="disabled" id="disabled" autoComplete="off" defaultChecked={!this.state.campaign.isActive} /> Disabled
+              </label>
+            </div>
+          </div>
         </div>
         <div className="row">
           <div className="col-md-4">
@@ -97,7 +103,7 @@ class Campaign extends React.Component {
             <h2>Email</h2>
             <div dangerouslySetInnerHTML={ {__html: this.state.preview} }></div>
             <div className="input-group">
-              <input type="text" className="form-control" placeholder="Question" ref="question"/>
+              <input type="text" className="form-control" placeholder="Question" defaultValue={this.state.campaign.question} ref="question"/>
               <span className='input-group-btn'>
                 <button className="btn btn-default" type="button" onClick={this.handleQuestion}>Set</button>
               </span>
