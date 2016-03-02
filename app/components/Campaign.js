@@ -84,10 +84,10 @@ class Campaign extends React.Component {
   };
 
   render() {
-    console.log(this.state)
     let links = this.state.campaign.links || []
     return (
       <div className="row">
+        <div className="row"><a href="/">Back to Campaign List</a></div>
         <div className="row">
           <div className="col-md-9">
             <h1>{this.state.campaign.name}</h1>
