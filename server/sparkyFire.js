@@ -102,7 +102,7 @@ class SparkyFire {
       transmissionBody: {
         recipients: [{ address: { email: address } }],
         content: {
-          template_id: 'sparkpost-firebase-demo'
+          template_id: process.env.TEMPLATE_ID
         },
         substitution_data: campaignData,
         campaign_id: campaignData.name

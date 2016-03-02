@@ -6,7 +6,7 @@ import SparkyFire from './sparkyFire.js'
 import SparkPost from 'sparkpost'
 
 const app = express()
-const TEMPLATE_ID = 'sparkpost-firebase-demo'
+const TEMPLATE_ID = process.env.TEMPLATE_ID
 
 const sparkyFire = new SparkyFire(process.env.FIREBASE_URL)
 sparkyFire.listen('raw-events');
