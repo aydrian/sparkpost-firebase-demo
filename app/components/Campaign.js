@@ -1,5 +1,10 @@
 import React from 'react'
 import Rebase from 're-base'
+import RecipientsList from './Campaigns/RecipientsList'
+import LinksList from './Campaigns/LinksList'
+import AddLink from './Campaigns/AddLink'
+import ToggleButton from './Campaigns/ToggleButton'
+import TemplatePreview from './Campaigns/TemplatePreview'
 
 //const base = Rebase.createClass(process.env.FIREBASE_URL)
 const base = Rebase.createClass('https://sparkpost-demo.firebaseio.com/')
@@ -47,10 +52,11 @@ class Campaign extends React.Component {
     });
   }
 
-  handleSubmit = (event) => {
+  handleAddLink(newLink) {
     event.preventDefault()
     let links = this.state.campaign.links || []
-    links.push({text: this.refs.optionText.value, link: this.refs.optionLink.value, clicks: 0})
+    newLink.clicks = 0
+    links.push(newLink)
     this.setState({
       campaign: {
         links: links
@@ -79,48 +85,27 @@ class Campaign extends React.Component {
             <h1>{this.state.campaign.name}</h1>
           </div>
           <div className="col-md-3">
-            <div className="btn-group" data-toggle="buttons">
-              <label className="btn btn-primary active">
-                <input type="radio" name="active" id="active" autoComplete="off" defaultChecked={this.state.campaign.isActive} />Active
-              </label>
-              <label className="btn btn-primary">
-                <input type="radio" name="disabled" id="disabled" autoComplete="off" defaultChecked={!this.state.campaign.isActive} /> Disabled
-              </label>
-            </div>
+            <ToggleButton isActive={this.state.campaign.isActive} />
           </div>
         </div>
         <div className="row">
           <div className="col-md-4">
             <h2>Recipients</h2>
             <p>Email <a href={`mailto:${ this.email}`}>{this.email}</a> to subscribe</p>
-            <ul className="list-group">
-              {this.state.recipients.map((recipient, index) => (
-                <li className="list-group-item" key={index}>{recipient.email} - {recipient.subject} {recipient.isSent ? <i className="fa fa-paper-plane-o"></i> : ''} {recipient.isOpen ? <i className="fa fa-envelope-o"></i> : ''}</li>
-              ))}
-            </ul>
+            <RecipientsList recipients={this.state.recipients} />
           </div>
           <div className="col-md-8">
             <h2>Email</h2>
-            <div dangerouslySetInnerHTML={ {__html: this.state.preview} }></div>
+            <TemplatePreview>{ this.state.preview }</TemplatePreview>
             <div className="input-group">
               <input type="text" className="form-control" placeholder="Question" defaultValue={this.state.campaign.question} ref="question"/>
               <span className='input-group-btn'>
                 <button className="btn btn-default" type="button" onClick={this.handleQuestion}>Set</button>
               </span>
             </div>
-            <h3>Add Options</h3>
-            <div className="input-group">
-              <input type="text" className="form-control" placeholder="Option Text" ref="optionText"/>
-              <input type="text" className="form-control" placeholder="Option Link" ref="optionLink"/>
-              <span className='input-group-btn'>
-                <button className="btn btn-default" type="button" onClick={this.handleSubmit}>Add</button>
-              </span>
-            </div>
-            <ul className="list-group">
-              {links.map((link, index) => (
-                <li className="list-group-item" key={index}>{link.text} - {link.link} Clicks: {link.clicks}</li>
-              ))}
-            </ul>
+            <p>Add Links</p>
+            <AddLink addLink={(newLink) => this.handleAddLink(newLink)} />
+            <LinksList links={links} />
           </div>
         </div>
       </div>
