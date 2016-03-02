@@ -50,7 +50,7 @@ class Campaign extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
     let links = this.state.campaign.links || []
-    links.push({text: this.refs.optionText.value, link: this.refs.optionLink.value})
+    links.push({text: this.refs.optionText.value, link: this.refs.optionLink.value, clicks: 0})
     this.setState({
       campaign: {
         links: links
@@ -118,7 +118,7 @@ class Campaign extends React.Component {
             </div>
             <ul className="list-group">
               {links.map((link, index) => (
-                <li className="list-group-item" key={index}>{link.text} - {link.link}</li>
+                <li className="list-group-item" key={index}>{link.text} - {link.link} Clicks: {link.clicks}</li>
               ))}
             </ul>
           </div>

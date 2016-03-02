@@ -39,26 +39,34 @@ class SparkyFire {
         this.processOpenEvent(event)
         break;
       default:
-        console.log(`Processing ${ event.type } not implemented.`);
+        console.log(`Processing ${ event.type } not implemented.`)
         break;
     }
   }
 
   processOpenEvent(event) {
     const campaignId = event.campaign_id
+    console.log(`Email Opened for ${ campaignId } by ${ event.rcpt_to }`)
     this.db.child(`recipients/${campaignId}/${this.escapeEmailAddress(event.rcpt_to)}`).update({
       isOpen: true
     })
   }
 
   processClickEvent(event) {
-    console.log(event)
     const campaignId = event.campaign_id
-
+    console.log(`Link Clicked for ${ campaignId } by ${ event.rcpt_to }: ${ event.target_link_url }`)
+    this.db.child(`campaigns/${ campaignId }/links`).orderByChild('link').equalTo(event.target_link_url).limitToFirst(1).once('value', snapshot => {
+      snapshot.forEach(childSnapshot => {
+        var clicks = childSnapshot.val().clicks || 0;
+        clicks++;
+        childSnapshot.ref().child('clicks').set(clicks);
+      })
+    })
   }
 
   processDeliveryEvent(event) {
     const campaignId = event.campaign_id
+    console.log(`Email Delivered for ${ campaignId } to ${ event.rcpt_to }`)
     this.db.child(`recipients/${campaignId}/${this.escapeEmailAddress(event.rcpt_to)}`).update({
       isSent: true
     })
@@ -100,7 +108,7 @@ class SparkyFire {
         campaign_id: campaignData.name
       }
     }, (err, res) => {
-      console.log('Send transmission', res.body)
+      console.log(`Email Sent for ${ campaignData.name } to ${ address }`)
     })
   }
 
