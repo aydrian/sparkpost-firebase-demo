@@ -95,7 +95,7 @@ class Campaign extends React.Component {
             <p>Email <a href={`mailto:${ this.email}`}>{this.email}</a> to subscribe</p>
             <ul className="list-group">
               {this.state.recipients.map((recipient, index) => (
-                <li className="list-group-item" key={index}>{recipient.email} - {recipient.subject}</li>
+                <li className="list-group-item" key={index}>{recipient.email} - {recipient.subject} {recipient.isSent ? <i className="fa fa-paper-plane-o"></i> : ''} {recipient.isOpen ? <i className="fa fa-envelope-o"></i> : ''}</li>
               ))}
             </ul>
           </div>
