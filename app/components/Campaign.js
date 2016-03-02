@@ -3,7 +3,6 @@ import Rebase from 're-base'
 import RecipientsList from './Campaigns/RecipientsList'
 import LinksList from './Campaigns/LinksList'
 import AddLink from './Campaigns/AddLink'
-import ToggleButton from './Campaigns/ToggleButton'
 import TemplatePreview from './Campaigns/TemplatePreview'
 
 //const base = Rebase.createClass(process.env.FIREBASE_URL)
@@ -65,6 +64,15 @@ class Campaign extends React.Component {
     this.getPreview()
   };
 
+  handleIsActive = (event) => {
+    event.preventDefault()
+    this.setState({
+      campaign: {
+        isActive: !this.state.campaign.isActive
+      }
+    })
+  };
+
   handleQuestion = (event) => {
     event.preventDefault()
     this.setState({
@@ -85,7 +93,7 @@ class Campaign extends React.Component {
             <h1>{this.state.campaign.name}</h1>
           </div>
           <div className="col-md-3">
-            <ToggleButton isActive={this.state.campaign.isActive} />
+            <button type="button" className="btn btn-primary" onClick={this.handleIsActive}>{this.state.campaign.isActive? "Stop Campaign" : "Start Campaign"}</button>
           </div>
         </div>
         <div className="row">
