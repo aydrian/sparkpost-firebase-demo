@@ -7,4 +7,5 @@ This application demonstrates using Firebase as a consumer for SparkPost Event a
 * delivery
 * open
 * click
+
 The processed events will be display using React.js
