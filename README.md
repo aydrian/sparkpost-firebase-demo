@@ -13,7 +13,7 @@ The processed events will be display using React.js
 ## Environment Variables
 To use this app, you'll need to add the following environment variables.
 * SPARKPOST_API_KEY - A SparkPost API Key with Templates and Transmissions permissions
-* TEMPLATE_ID - The ID of the SparkPost Template to use.
+* TEMPLATE_ID - The ID of the SparkPost Template to use. **note** the template must be published
 * FIREBASE_URL - The URL for the instance of your Firebase Database
 
 ## Email Template
