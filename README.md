@@ -9,3 +9,20 @@ This application demonstrates using Firebase as a consumer for SparkPost Event a
 * click
 
 The processed events will be display using React.js
+
+## Environment Variables
+To use this app, you'll need to add the following environment variables.
+* SPARKPOST_API_KEY - A SparkPost API Key with Templates and Transmissions permissions
+* TEMPLATE_ID - The ID of the SparkPost Template to use.
+* FIREBASE_URL - The URL for the instance of your Firebase Database
+
+## Email Template
+Here are is minimum require template needed to display information passed in.
+```
+<h2>{{question}}</h2>
+<ul>
+{{ each links }}
+    <li><a href="{{{ loop_var.link }}}">{{ loop_var.text }}</a></li>
+{{ end }}
+</ul>
+```
