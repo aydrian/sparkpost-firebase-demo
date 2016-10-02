@@ -30,14 +30,14 @@ Here are is minimum require template needed to display information passed in.
 ## Webhooks
 You'll need to create a Relay Webhook and an Event Webhook.
 ### Event Webhook
-Use the [SparkPost WebUI](https://app.sparkpost.com/account/webhooks) to create a new webhook that points to FIREBASE_URL/raw-events.json. 
+Use the [SparkPost WebUI](https://app.sparkpost.com/account/webhooks) to create a new webhook that points to FIREBASE_URL/raw-events.json.
 Select the following Events:
 * Delivery
 * Click
 * Open
 
 ### Relay Webhook
-Create an Inbound Domain by creating MX Records in your DNS: https://developers.sparkpost.com/api/#/reference/inbound-domains
+Create an Inbound Domain by creating MX Records in your DNS: https://developers.sparkpost.com/api/inbound-domains
 Add the Inbound Domain to SparkPost **note** you will need a [SparkPost API Key][1] with Inbound Domain Permissions
 ```
 curl --include \
@@ -50,7 +50,7 @@ curl --include \
 'https://api.sparkpost.com/api/v1/inbound-domains'
 ```
 
-Create a Relay Webhook and point it to FIREBASE_URL/raw-events.json: https://developers.sparkpost.com/api/#/reference/relay-webhooks/
+Create a Relay Webhook and point it to FIREBASE_URL/raw-events.json: https://developers.sparkpost.com/api/relay-webhooks
 **note** you will need a [SparkPost API Key][1] with Relay Webhook Permissions
 ```
 curl --include \

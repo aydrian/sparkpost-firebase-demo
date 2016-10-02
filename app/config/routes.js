@@ -1,8 +1,8 @@
 import React from 'react'
-import Main from '../components/Main'
-import Home from '../components/Home'
-import Campaign from '../components/Campaign'
 import { Route, IndexRoute } from 'react-router'
+import Main from '../containers/Main'
+import Home from '../containers/Home'
+import Campaign from '../containers/Campaign'
 
 export default (
   <Route path="/" component={Main}>

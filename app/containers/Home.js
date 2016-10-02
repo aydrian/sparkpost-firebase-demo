@@ -1,7 +1,7 @@
 import React from 'react'
 import Rebase from 're-base'
-import AddCampaign from './Campaigns/AddCampaign'
-import CampaignsList from './Campaigns/CampaignsList'
+import AddCampaign from '../components/AddCampaign'
+import CampaignsList from '../components/CampaignsList'
 
 const base = Rebase.createClass('https://sparkpost-demo.firebaseio.com/')
 

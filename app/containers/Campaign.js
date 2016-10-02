@@ -1,9 +1,9 @@
 import React from 'react'
 import Rebase from 're-base'
-import RecipientsList from './Campaigns/RecipientsList'
-import LinksList from './Campaigns/LinksList'
-import AddLink from './Campaigns/AddLink'
-import TemplatePreview from './Campaigns/TemplatePreview'
+import RecipientsList from '../components/RecipientsList'
+import LinksList from '../components/LinksList'
+import AddLink from '../components/AddLink'
+import TemplatePreview from '../components/TemplatePreview'
 
 //const base = Rebase.createClass(process.env.FIREBASE_URL)
 const base = Rebase.createClass('https://sparkpost-demo.firebaseio.com/')
